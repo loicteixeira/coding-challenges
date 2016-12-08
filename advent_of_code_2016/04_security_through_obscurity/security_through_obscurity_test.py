@@ -1,6 +1,7 @@
 import unittest
 
 from security_through_obscurity_part1 import is_room_valid, valid_rooms_sum
+from security_through_obscurity_part2 import decrypt_room_name, storage_room_id
 
 
 class Part1TestCase(unittest.TestCase):
@@ -29,3 +30,30 @@ class Part1TestCase(unittest.TestCase):
         input_ = 'aaaaa-bbb-z-y-x-123[abxyz]\ntotally-real-room-200[decoy]'
 
         self.assertEqual(valid_rooms_sum(input_), 123)
+
+
+class Part2TestCase(unittest.TestCase):
+    def test_decrypt_room_name(self):
+        encrypted_name = 'qzmt-zixmtkozy-ivhz'
+        shift = 343
+        expected_name = 'very encrypted name'
+
+        self.assertEqual(decrypt_room_name(encrypted_name, shift), expected_name)
+
+    def test_storage_room_id_with_existing_room(self):
+        input_ = (
+            'qzchnzbshud-cxd-trdq-sdrshmf-105[jqexn]\n'  # => radioactive dye user testing
+            'molgbzqfib-bdd-mrozexpfkd-289[bdfmo]'  # => projectile egg purchasing
+        )
+        room_to_find = 'projectile egg purchasing'
+
+        self.assertEqual(storage_room_id(input_, room_to_find), 289)
+
+    def test_storage_room_id_with_non_existing_room(self):
+        input_ = (
+            'qzchnzbshud-cxd-trdq-sdrshmf-105[jqexn]\n'  # => radioactive dye user testing
+            'molgbzqfib-bdd-mrozexpfkd-289[bdfmo]'  # => projectile egg purchasing
+        )
+        room_to_find = 'laundry'
+
+        self.assertIsNone(storage_room_id(input_, room_to_find))
