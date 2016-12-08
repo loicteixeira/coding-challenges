@@ -1,6 +1,6 @@
 import unittest
 
-from security_through_obscurity_part1 import is_room_valid
+from security_through_obscurity_part1 import is_room_valid, valid_rooms_sum
 
 
 class Part1TestCase(unittest.TestCase):
@@ -24,3 +24,8 @@ class Part1TestCase(unittest.TestCase):
         for room_name, checksum in values:
             self.assertFalse(
                 is_room_valid(room_name, checksum))
+
+    def test_valid_rooms_sum(self):
+        input_ = 'aaaaa-bbb-z-y-x-123[abxyz]\ntotally-real-room-200[decoy]'
+
+        self.assertEqual(valid_rooms_sum(input_), 123)

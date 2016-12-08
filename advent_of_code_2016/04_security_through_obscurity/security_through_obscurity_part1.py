@@ -1,5 +1,14 @@
 import collections
 import os
+import re
+
+ROOM_PATTERN = re.compile(
+    '^'
+    '(?P<name>[a-z-]+)'
+    '(?P<id>[0-9]+)'
+    '\[(?P<checksum>[a-z]+)\]'
+    '$'
+)
 
 
 def is_room_valid(room_name, checksum):
@@ -18,8 +27,20 @@ def is_room_valid(room_name, checksum):
     return calculated_checksum == checksum
 
 
-def valid_rooms_sum(data):
-    pass
+def valid_rooms_sum(rooms):
+
+    count = 0
+
+    for room in rooms.splitlines():
+        matches = ROOM_PATTERN.search(room)
+        if not matches:
+            continue
+
+        name, id_, checksum = matches.groups()
+        if is_room_valid(name, checksum):
+            count += int(id_)
+
+    return count
 
 
 if __name__ == '__main__':
