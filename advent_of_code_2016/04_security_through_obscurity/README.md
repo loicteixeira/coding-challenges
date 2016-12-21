@@ -10,7 +10,7 @@ Each room consists of an encrypted name (lowercase letters separated by dashes) 
 
 A room is real (not a decoy) if the checksum is the five most common letters in the encrypted name, in order, with ties broken by alphabetization.
 
-What is the *sum of the sector IDs of the real rooms*?
+What is the **sum of the sector IDs of the real rooms**?
 
 ### Examples
 
