@@ -1,6 +1,6 @@
 # Advent of Code 2016 - Day 6: Signal and Noise
 
-Source: http://adventofcode.com/2016/day/6
+Source: https://adventofcode.com/2016/day/6
 
 ## Part 1
 

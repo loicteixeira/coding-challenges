@@ -1,6 +1,6 @@
 # Advent of Code 2016 - Day 5: How About a Nice Game of Chess?
 
-Source: http://adventofcode.com/2016/day/5
+Source: https://adventofcode.com/2016/day/5
 
 ## Part 1
 

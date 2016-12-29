@@ -1,6 +1,6 @@
 # Advent of Code 2016
 
-Source: http://adventofcode.com/2016
+Source: https://adventofcode.com/2016
 
 ## Story
 

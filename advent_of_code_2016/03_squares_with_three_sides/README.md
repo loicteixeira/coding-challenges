@@ -1,6 +1,6 @@
 # Advent of Code 2016 - Day 3: Squares With Three Sides
 
-Source: http://adventofcode.com/2016/day/3
+Source: https://adventofcode.com/2016/day/3
 
 ## Part 1
 
