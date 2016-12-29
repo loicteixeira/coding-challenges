@@ -7,15 +7,15 @@ IP_SPLIT_PATTERN = re.compile(r'\[|\]')
 def split_ip(ip):
     parts = IP_SPLIT_PATTERN.split(ip)
 
-    # Because normal and hypernet parts can't overlap, they alternate.
+    # Because supernet and hypernet parts can't overlap, they alternate.
     # Therefore, they can be grouped by taking even and odd indexes.
-    normal_parts, hypernet_parts = parts[::2], parts[1::2]
+    supernet_parts, hypernet_parts = parts[::2], parts[1::2]
 
     # Inverse if the IP started with an hypernet packet.
     if ip[0] == '[':
-        normal_parts, hypernet_parts = hypernet_parts, normal_parts
+        supernet_parts, hypernet_parts = hypernet_parts, supernet_parts
 
-    return normal_parts, hypernet_parts
+    return supernet_parts, hypernet_parts
 
 
 def has_abba(part):
@@ -33,14 +33,14 @@ def has_abba(part):
 
 
 def support_tls(ip):
-    normal_parts, hypernet_parts = split_ip(ip)
+    supernet_parts, hypernet_parts = split_ip(ip)
 
     # An IP does not support TLS if any hypernet sequence has an ABBA.
     if any(map(has_abba, hypernet_parts)):
         return False
 
-    # An IP support TLS if any normal sequence has an ABBA.
-    return any(map(has_abba, normal_parts))
+    # An IP support TLS if any supernet sequence has an ABBA.
+    return any(map(has_abba, supernet_parts))
 
 
 def count_ips_with_tls_support(ips):
