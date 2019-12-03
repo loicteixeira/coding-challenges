@@ -14,7 +14,7 @@ import pytest
         ),
     ],
 )
-def test_distance__to_closest_intersection(wires_inputs, expected_distance):
+def test_distance_to_closest_intersection(wires_inputs, expected_distance):
     assert distance_to_closest_intersection(wires_inputs) == expected_distance
 
 
@@ -37,13 +37,14 @@ DIRECTION_VECTORS = {
 
 def distance_to_closest_intersection(inputs):
     visited_by_first_wire, visited_by_second_wire = map(get_visited, inputs)
-    intersections = visited_by_first_wire & visited_by_second_wire
+    intersections = set(visited_by_first_wire.keys()) & set(visited_by_second_wire.keys())
     return min(abs(point.x) + abs(point.y) for point in intersections)
 
 
 def get_visited(commands):
     position = Vector(0, 0)
-    visited = set()
+    steps = 0
+    visited = {}
 
     for command in commands.split(","):
         direction = DIRECTION_VECTORS[command[0]]
@@ -51,7 +52,9 @@ def get_visited(commands):
 
         for step in range(distance):
             position = position + direction
-            visited.add(position)
+            steps += 1
+            if position not in visited:
+                visited[position] = steps
 
     return visited
 
