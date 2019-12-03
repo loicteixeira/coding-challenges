@@ -37,7 +37,7 @@ DIRECTION_VECTORS = {
 
 def distance_to_closest_intersection(inputs):
     visited_by_first_wire, visited_by_second_wire = map(get_visited, inputs)
-    intersections = set(visited_by_first_wire.keys()) & set(visited_by_second_wire.keys())
+    intersections = visited_by_first_wire.keys() & visited_by_second_wire.keys()
     return min(abs(point.x) + abs(point.y) for point in intersections)
 
 
