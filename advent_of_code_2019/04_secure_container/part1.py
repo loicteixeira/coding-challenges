@@ -6,18 +6,18 @@ def is_valid_password(password: int) -> bool:
     digits = map(int, str(password))
 
     previous_digit = 0
-    has_equal_adjacent_digits = False
+    has_same_adjacent_digits = False
     for digit in digits:
         # Equal adjacent digits
         if digit == previous_digit:
-            has_equal_adjacent_digits = True
+            has_same_adjacent_digits = True
 
         # Never decrease
         if digit < previous_digit:
             return False
         previous_digit = digit
 
-    return has_equal_adjacent_digits
+    return has_same_adjacent_digits
 
 
 def valid_passwords_in_range(

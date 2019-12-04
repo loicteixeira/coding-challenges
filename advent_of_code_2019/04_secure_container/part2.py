@@ -8,18 +8,18 @@ def is_valid_password(password: int) -> bool:
     digits = map(int, str(password))
 
     previous_digit = 0
-    equal_adjacent_digits = defaultdict(lambda: 1)
+    same_adjacent_digits = defaultdict(lambda: 1)
     for digit in digits:
         # Equal adjacent digits
         if digit == previous_digit:
-            equal_adjacent_digits[digit] += 1
+            same_adjacent_digits[digit] += 1
 
         # Never decrease
         if digit < previous_digit:
             return False
         previous_digit = digit
 
-    doubles = [digit for digit, count in equal_adjacent_digits.items() if count == 2]
+    doubles = [digit for digit, count in same_adjacent_digits.items() if count == 2]
     return len(doubles) > 0
 
 
